@@ -15,10 +15,6 @@ bootJar {
     archiveFileName = 'core-service.jar'
 }
 
-jar {
-    enabled = false
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
