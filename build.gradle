@@ -5,10 +5,14 @@ plugins {
 }
 
 group = 'com.moneyyummy'
-version = '0.1.4'
+version = '0.1.5'
 
 java {
     sourceCompatibility = '17'
+}
+
+jar {
+    enabled = false
 }
 
 configurations {
@@ -19,6 +23,7 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io"  }
 }
 
 dependencies {
