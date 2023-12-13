@@ -33,7 +33,6 @@ public class JwtTokenUtils {
     @Value("${token.expireTimeMs}")
     private Long expireTimeMs;
 
-
     public String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .claims(claims)
