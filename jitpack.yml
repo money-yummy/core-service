@@ -8,4 +8,4 @@ before_install:
   - mvn -v
 
 install:
-  - ./gradlew clean build
+  - ./gradlew build publishToMavenLocal
