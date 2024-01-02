@@ -25,7 +25,7 @@ import java.util.Optional;
 @Component
 public class JwtTokenUtils {
 
-    private final static String AUTHORIZATION = "Authorization";
+    public static final String AUTHORIZATION = "Authorization";
 
     @Value("${token.secretKey}")
     private String secretKey;
