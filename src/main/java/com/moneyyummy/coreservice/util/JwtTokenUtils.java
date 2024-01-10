@@ -46,7 +46,7 @@ public class JwtTokenUtils {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
     }
 
-    public String resolveToken(HttpServletRequest request) {
+    public String findToken(HttpServletRequest request) {
         Cookie[] cookies = Optional.ofNullable(request.getCookies()).orElseGet(() -> new Cookie[0]);
 
         return Arrays.stream(cookies)
@@ -56,7 +56,7 @@ public class JwtTokenUtils {
                 .orElse(null);
     }
 
-    public String resolveToken(ServerHttpRequest request) {
+    public String findToken(ServerHttpRequest request) {
         return Optional.ofNullable(request.getCookies().getFirst(AUTHORIZATION))
                 .map(HttpCookie::getValue)
                 .orElse(null);
