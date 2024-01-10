@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class PassportFilter extends OncePerRequestFilter {
 
     private final ObjectMapper mapper;
     private final JwtTokenUtils jwtTokenUtils;
+    private final AntPathMatcher antPathMatcher;
 
     @Value("${moneyyummy.url.skip}")
     private List<String> skipUrl;
@@ -41,8 +43,8 @@ public class PassportFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         return skipUrl.stream()
-                .anyMatch(pattern -> pattern.equals(request.getRequestURI()));
+                .anyMatch(pattern -> antPathMatcher.match(pattern, request.getRequestURI()));
     }
 }
